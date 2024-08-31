@@ -14,7 +14,7 @@ function App() {
 
     <nav>
       <h1> CREATORVERSE </h1>
-    <Link to = "/"> VIEW ALL CREATOR </Link>
+    <Link to = "/"> VIEW ALL CREATORS </Link>
     <Link to = "/AddCreator"> ADD A CREATOR </Link>
 
     </nav>

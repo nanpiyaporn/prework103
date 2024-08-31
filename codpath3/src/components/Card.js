@@ -1,22 +1,27 @@
 import  supabase from '../client';
-import supabase from '../client/;
+import React from 'react';
 import {Link} from 'react-router-dom';
 
-const Card = ({user, onDelete}) ={
+const Card = ({creator, onDelete}) =>{
     const handleDelete = async () => {
         const {data, error} = await supabase
-        .from('name')
+        .from('creatorverse')
         .delete()
-        .eq('id', user.id);
-        onDelete();
-    };
+        .eq('id', creator.id);
+        if (error){
+            console.error(error)
+        }
+        if (data) {
+            console.log(data)
+            onDelete(creator.id);  // Call the parent component's onDelete function with the deleted user's ID 
+        }
+    }
 
     return (
         <div className="card">
             <div className="card-body">
                 <h5 className="card-title">{user.name}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{user.email}</h6>
-                <p className="card-text">{user.age}</p>
+              
                 <Link to={`/edit/${user.id}`} className="card-link">Edit</Link>
                 <button onClick={handleDelete} className="card-link">Delete</button>
             </div>
@@ -25,4 +30,4 @@ const Card = ({user, onDelete}) ={
 };
 
 
-}
+export default Card;
